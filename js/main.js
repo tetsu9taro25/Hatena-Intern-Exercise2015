@@ -9,14 +9,15 @@ function parseLTSVLog (rowData){
   var parse = [];
   colLog = rowData.split(/\n/);//各行で切り分ける
 
-  for (i=0; i<colLog.length-1; i++){
+  for (i=0; i<colLog.length; i++){
+    if (colLog[i]==="") break;//改行で区切ると空要素が出来ることがあるので、それを退避
     logElement = colLog[i].split(/\t/);//tabで切り分ける
-    var obj = {};
+    var obj = {};//各行をオブジェクトで区切る
 
     for (j=0; j<logElement.length; j++){
-      keyVal = logElement[j].split(':');
+      keyVal = logElement[j].split(':');//keyとvalueに分ける
 
-      if (keyVal[0]==='epoch'){
+      if ( !isNaN(keyVal[1]) ){//Stringの中身が数値のみの場合
         obj[keyVal[0]] = Number(keyVal[1]);
       }else{
         obj[keyVal[0]] = keyVal[1];
