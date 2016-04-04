@@ -28,6 +28,10 @@ function parseLTSVLog (rowData){
  return parse;
 }
 
-parseLTSVLog(logStr);
-
 // 課題 JS-2: 関数 `createLogTable` を記述してください
+function createLogTable (idElement,parseData) {
+  keyList = Object.keys(parseData[0]);
+  console.log(keyList);
+}
+
+createLogTable (document.getElementById("qunit"),parseLTSVLog(logStr));
