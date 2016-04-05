@@ -29,9 +29,14 @@ function parseLTSVLog (rowData){
 }
 
 // 課題 JS-2: 関数 `createLogTable` を記述してください
-function createLogTable (idElement,parseData) {
+function createLogTable (targetElement,parseData) {
   keyList = Object.keys(parseData[0]);
   console.log(keyList);
+  var makeTable = document.createElement('table');
+  for (i=0; i<keyList; i++)
+  makeTable.innerHTML = "<thead><tr>" +   + "</tr></thead><tbody></tbody>";
+  targetElement.appendChild(makeTable);
 }
+var targetElement = document.getElementsByTagName("body").item(0);
+createLogTable (targetElement,parseLTSVLog(logStr));
 
-createLogTable (document.getElementById("qunit"),parseLTSVLog(logStr));
