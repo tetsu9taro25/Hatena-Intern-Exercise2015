@@ -31,12 +31,30 @@ function parseLTSVLog (rowData){
 // 課題 JS-2: 関数 `createLogTable` を記述してください
 function createLogTable (targetElement,parseData) {
   keyList = Object.keys(parseData[0]);
-  console.log(keyList);
   var makeTable = document.createElement('table');
-  for (i=0; i<keyList; i++)
-  makeTable.innerHTML = "<thead><tr>" +   + "</tr></thead><tbody></tbody>";
+
+  var makeThead = "";
+  for (i=0; i<keyList.length; i++){
+    makeThead += "<th>";
+    makeThead += keyList[i];
+    makeThead += "</th>";
+  }
+
+  var makeTbody= "";
+//  for (i=0; i<parseData.length; i++){
+ //   makeTbody += "<tr>";
+ //   valueList = parseData[i].keyList[i];
+ //   console.log(keyList);
+ //   for (j=0; j<valueList.length; j++){
+ //     makeTbody += "<td>";
+ //     makeTbody += valueList[j];
+ //     makeTbody += "</td>";
+ //   }
+ //   makeTbody += "</tr>"
+ // }
+
+  makeTable.innerHTML = "<thead><tr>" +  makeThead  + "</tr></thead><tbody>" + makeTbody + "</tbody>";
   targetElement.appendChild(makeTable);
 }
 var targetElement = document.getElementsByTagName("body").item(0);
 createLogTable (targetElement,parseLTSVLog(logStr));
-
