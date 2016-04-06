@@ -41,20 +41,21 @@ function createLogTable (targetElement,parseData) {
   }
 
   var makeTbody= "";
-//  for (i=0; i<parseData.length; i++){
- //   makeTbody += "<tr>";
- //   valueList = parseData[i].keyList[i];
- //   console.log(keyList);
- //   for (j=0; j<valueList.length; j++){
- //     makeTbody += "<td>";
- //     makeTbody += valueList[j];
- //     makeTbody += "</td>";
- //   }
- //   makeTbody += "</tr>"
- // }
+  for (i=0; i<parseData.length; i++){
+    makeTbody += "<tr>";
+    obj = parseData[i];
+    for(var key in obj) {
+      makeTbody += "<td>";
+      makeTbody += obj[key];
+      makeTbody += "</td>";
+    }
+    makeTbody += "</tr>"
+  }
 
   makeTable.innerHTML = "<thead><tr>" +  makeThead  + "</tr></thead><tbody>" + makeTbody + "</tbody>";
   targetElement.appendChild(makeTable);
 }
+
 var targetElement = document.getElementsByTagName("body").item(0);
 createLogTable (targetElement,parseLTSVLog(logStr));
+
