@@ -38,9 +38,9 @@ use HTTP::Date;
 sub time {
   my $self = shift;
   #my $time = HTTP::Date::time2iso($self->{epoch});
-  my $time = time2str($self->{epoch});
-  
+  my $time = HTTP::Date::time2isoz($self->{epoch});
   $time =~ s/\ /T/;
+  $time =~ s/Z//;
   return $time;
 }
 
